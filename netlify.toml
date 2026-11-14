@@ -1,0 +1,6 @@
+# Static site + serverless "side server" for the Reserve form.
+# GitHub Pages stays the public site; this Netlify deploy hosts the
+# form-handling function and registers the Netlify Form.
+[build]
+  publish = "."
+  functions = "netlify/functions"

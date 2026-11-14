@@ -251,6 +251,7 @@
         var btn = form.querySelector('button[type=submit]');
         if(btn){ btn.disabled = true; btn.textContent = 'Reserving…'; }
         var payload = new URLSearchParams(new FormData(form)).toString();
+        var endpoint = 'https://remote-control-mouse.netlify.app/.netlify/functions/reserve';
         var show = function(){
           var box = document.createElement('div');
           box.setAttribute('role','status');
@@ -261,7 +262,7 @@
             '<p style="margin-top:10px;font-size:14px;line-height:1.5;color:hsl(var(--muted-foreground));font-family:var(--font-body),Inter,sans-serif">We’ve got your details — one email when your finish is ready to order. No payment today, nothing else.</p>';
           form.parentNode.replaceChild(box, form);
         };
-        fetch('/', { method:'POST', headers:{ 'Content-Type':'application/x-www-form-urlencoded' }, body: payload })
+        fetch(endpoint, { method:'POST', headers:{ 'Content-Type':'application/x-www-form-urlencoded' }, body: payload })
           .then(show).catch(show);
       });
     }
